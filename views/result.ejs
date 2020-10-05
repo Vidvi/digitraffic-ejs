@@ -1,0 +1,38 @@
+<%- include("header") %>
+<h1>
+    Valittu asema: <%= station %>
+</h1>
+<h3>
+    Näytetään lähtevät
+</h3>
+
+    <% for( let i = 0; i < bruh.length; i++ ) { %>
+        <div class="tulokset">
+            <!-- operaattori || ei jostain syystä toiminut, joten tässä tulos -->
+            <% if (bruh[i].category != "Cargo") { %>
+                <% if (bruh[i].category != "Shunting") { %>
+                    <% if (bruh[i].category != "On-track machines") { %>
+                        <% if (bruh[i].category != "Locomotive") { %>
+                            <h3>
+                               <% if(bruh[i].date.toString(10).length >= 4){%>
+                                    Lähtöaika: <%= bruh[i].date %>
+                                 <%  } else { %>
+                                    Lähtöaika <%= bruh[i].date.toString(10) + 0; %>
+                                 <%  } %>
+                            </h3>
+                            <h3>
+                                Päivä: <%= bruh[i].departure%>
+                            </h3>
+                            <h3>
+                                Juna: <%= bruh[i].type %> <%= bruh[i].number %>
+                            </h3>
+                            <h3>
+                                Päätepysäkki: <%= bruh[i].destination %> 
+                            </h3>
+                        <% } %>
+                    <% } %>
+                <% } %>
+            <% } %>
+        </div>
+    <% } %>
+<%- include("footer") %> 
